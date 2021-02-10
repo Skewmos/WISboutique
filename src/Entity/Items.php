@@ -2,13 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\ProductRepository;
+use App\Repository\ItemsRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=ProductRepository::class)
+ * @ORM\Entity(repositoryClass=ItemsRepository::class)
  */
-class Product
+class Items
 {
     /**
      * @ORM\Id
@@ -23,6 +23,11 @@ class Product
     private $name;
 
     /**
+     * @ORM\Column(type="integer")
+     */
+    private $price;
+
+    /**
      * @ORM\Column(type="text")
      */
     private $description;
@@ -30,7 +35,12 @@ class Product
     /**
      * @ORM\Column(type="integer")
      */
-    private $price;
+    private $quantity;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $url_picture;
 
     public function getId(): ?int
     {
@@ -49,6 +59,18 @@ class Product
         return $this;
     }
 
+    public function getPrice(): ?int
+    {
+        return $this->price;
+    }
+
+    public function setPrice(int $price): self
+    {
+        $this->price = $price;
+
+        return $this;
+    }
+
     public function getDescription(): ?string
     {
         return $this->description;
@@ -61,14 +83,26 @@ class Product
         return $this;
     }
 
-    public function getPrice(): ?int
+    public function getQuantity(): ?int
     {
-        return $this->price;
+        return $this->quantity;
     }
 
-    public function setPrice(int $price): self
+    public function setQuantity(int $quantity): self
     {
-        $this->price = $price;
+        $this->quantity = $quantity;
+
+        return $this;
+    }
+
+    public function getUrlPicture(): ?string
+    {
+        return $this->url_picture;
+    }
+
+    public function setUrlPicture(string $url_picture): self
+    {
+        $this->url_picture = $url_picture;
 
         return $this;
     }
